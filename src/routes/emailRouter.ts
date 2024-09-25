@@ -3,6 +3,7 @@ import asyncHandler from 'express-async-handler'
 import handleValidationErrors from '../middleware/handleValidationErrors'
 import { RequestHandler } from 'express-serve-static-core'
 import { body, ValidationChain } from 'express-validator'
+import transporter from '../nodemailer'
 
 const router = express.Router()
 
@@ -30,9 +31,19 @@ const email: {
 
   submit: asyncHandler(async (req, res, next) => {
     if (req.formErrors) return email.render(req, res, next);
+    // begin email
+    if (!process.env.SMTP_EMAIL)
+      throw new Error('Sendee is not defined.');
 
-    console.log(req.body.email);
+    const info = await transporter.sendMail({
+      from: process.env.SMTP_EMAIL,
+      to: req.body.email,
+      subject: 'Does this work?',
+      text: 'Guess it does!'
+    })
 
+    console.log(info)
+    // end email
     return res.redirect('/success')
   })
 }
