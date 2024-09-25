@@ -6,5 +6,12 @@
     includePrevInput: true
   }) %>
 
+  <%- include('../components/form-input', {
+    name: 'message',
+    label: 'Special Message',
+    type: 'text',
+    includePrevInput: true
+  }) %>
+
   <button type="submit">Submit</button>
 </form>
