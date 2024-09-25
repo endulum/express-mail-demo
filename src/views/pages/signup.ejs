@@ -1,0 +1,26 @@
+<form action="/signup" method="post">
+  <%- include('../components/form-input', { 
+    name: 'username',
+    label: 'Username',
+    type: 'text',
+    includePrevInput: true
+  }) %>
+
+  <%- include('../components/form-input', { 
+    name: 'password',
+    label: 'Password',
+    type: 'password',
+    includePrevInput: false
+  }) %>
+
+  <%- include('../components/form-input', { 
+    name: 'confirmPassword',
+    label: 'Confirm password',
+    type: 'password',
+    includePrevInput: false
+  }) %>
+
+  <button type="submit">
+    <span>Submit</span>
+  </button>
+</form>
