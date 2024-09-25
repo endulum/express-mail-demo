@@ -6,7 +6,9 @@ if (
 ) throw new Error('SMTP credentials are not defined.')
 
 const transporter = nodemailer.createTransport({
-  host: 'sandbox.smtp.mailtrap.io',
+  host: process.env.ENV === 'production'
+    ? 'live.smtp.mailtrap.io'
+    : 'sandbox.smtp.mailtrap.io',
   port: 587,
   secure: false,
   auth: {
