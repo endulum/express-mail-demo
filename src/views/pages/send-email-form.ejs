@@ -1,0 +1,10 @@
+<form action="/email" method="post">
+  <%- include('../components/form-input', {
+    name: 'email',
+    label: 'Your Email Address',
+    type: 'email',
+    includePrevInput: true
+  }) %>
+
+  <button type="submit">Submit</button>
+</form>
